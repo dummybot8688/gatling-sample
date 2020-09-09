@@ -15,4 +15,4 @@ To perform quick test, you need to clone [Video Game DB](https://github.com/jame
 *  BasicLoadSimulation
 *  RampUsersLoadSimulation
 *  FixedDurationLoadSimulation
->Replace the endpoints with the application, you would like to perform load test on.
+>Replace the endpoints in the simulation scala class with the application, you would like to perform load test on.
