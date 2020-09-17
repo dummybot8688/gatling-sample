@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
 class RampUsersLoadSimulation extends Simulation{
-  val httpConf = http.baseUrl("http://localhost:8080/app/")
+  val httpConf = http.baseUrl("http://da075b19-xpergiadev-caserv-8133-293958300.us-east-2.elb.amazonaws.com/")
     .header("Accept", "application/json")
 
   def getAllVideoGames() = {
@@ -24,12 +24,17 @@ class RampUsersLoadSimulation extends Simulation{
     )
   }
 
+  def userMemory() = {
+    exec(
+      http("Using Memory")
+        .get("use-memory")
+        .check(status.is(200))
+    )
+  }
+
   val scn = scenario("Ramp Users Load Simulation")
-    .exec(getAllVideoGames())
+    .exec(userMemory())
     .pause(5)
-    .exec(getSpecificGame())
-    .pause(5)
-    .exec(getAllVideoGames())
 
   // Ramp Users Load Simulation
   setUp(

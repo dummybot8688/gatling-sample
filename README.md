@@ -1,4 +1,4 @@
-##Understanding Gatling
+###Understanding Gatling
 
 This repo is companion repo to the tutorial provided by [James Willet's Gatling Guide](https://www.james-willett.com/gatling-load-testing-complete-guide/#1-installation-of-gatling-from-website-download).
 

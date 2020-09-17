@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
 class FixedDurationLoadSimulation extends Simulation{
-  val httpConf = http.baseUrl("http://localhost:8080/app/")
+  val httpConf = http.baseUrl("http://da075b19-xpergiadev-caserv-8133-1735115031.us-east-2.elb.amazonaws.com/")
     .header("Accept", "application/json")
 
   def getAllVideoGames() = {
@@ -14,6 +14,15 @@ class FixedDurationLoadSimulation extends Simulation{
         .get("videogames")
         .check(status.is(200))
     )
+  }
+
+  def userMemory() = {
+    tryMax(3){exec(
+      http("Using Memory")
+        .get("use-memory")
+        .check(status.is(200))
+    )
+    }
   }
 
   def getSpecificGame() = {
@@ -26,18 +35,15 @@ class FixedDurationLoadSimulation extends Simulation{
 
   val scn = scenario("Fixed Duration Load Simulation")
     .forever(){
-      exec(getAllVideoGames())
+      exec(userMemory())
         .pause(5)
-        .exec(getSpecificGame())
-        .pause(5)
-        .exec(getAllVideoGames())
     }
 
   setUp(
     scn.inject(
       nothingFor(5 seconds),
       atOnceUsers(10),
-      rampUsers(50) during (30 second)
+      rampUsers(10) during (30 second)
     ).protocols(httpConf)
   ).maxDuration(1 minute)
 }
