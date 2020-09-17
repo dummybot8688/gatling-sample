@@ -1,4 +1,5 @@
-###Understanding Gatling
+
+## Understanding Gatling
 
 This repo is companion repo to the tutorial provided by [James Willet's Gatling Guide](https://www.james-willett.com/gatling-load-testing-complete-guide/#1-installation-of-gatling-from-website-download).
 
@@ -15,4 +16,4 @@ To perform quick test, you need to clone [Video Game DB](https://github.com/jame
 *  BasicLoadSimulation
 *  RampUsersLoadSimulation
 *  FixedDurationLoadSimulation
->Replace the endpoints with the application, you would like to perform load test on.
+>Replace the endpoints in the simulation scala class with the application, you would like to perform load test on.
